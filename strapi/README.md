@@ -1,61 +1,112 @@
-# 🚀 Getting started with Strapi
+# SciSci Backend (Strapi)
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
-
-### `develop`
-
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
-
-```
-npm run develop
-# or
-yarn develop
-```
-
-### `start`
-
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
-
-```
-npm run start
-# or
-yarn start
-```
-
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
-
-```
-npm run build
-# or
-yarn build
-```
-
-## ⚙️ Deployment
-
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-```
-yarn strapi deploy
-```
-
-## 📚 Learn more
-
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+Este é o backend do projeto SciSci, desenvolvido com [Strapi](https://strapi.io/) e banco de dados PostgreSQL.
 
 ---
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+## Pré-requisitos
+
+- [Node.js](https://nodejs.org/) v18+ (caso rode localmente sem Docker)
+- [Yarn](https://yarnpkg.com/) ou [npm](https://www.npmjs.com/)
+- [Docker](https://www.docker.com/) (opcional, recomendado)
+- Banco de dados PostgreSQL (local ou em nuvem)
+
+---
+
+## Configuração do Ambiente
+
+1. **Clone o repositório:**
+
+   ```bash
+   git clone https://github.com/repo.git
+   cd ic-scisci-backend/strapi
+   ```
+
+2. **Configure as variáveis de ambiente:**
+
+   - Copie o arquivo `.env.example` para `.env` e ajuste conforme necessário:
+
+     ```bash
+     cp .env.example .env
+     ```
+
+   - Exemplo de variáveis importantes:
+     ```
+     DATABASE_CLIENT=postgres
+     DATABASE_HOST=localhost
+     DATABASE_PORT=5432
+     DATABASE_NAME=postgres
+     DATABASE_USERNAME=postgres
+     DATABASE_PASSWORD=sua_senha
+     DATABASE_SSL=false
+     APP_KEYS=chave1,chave2
+     ADMIN_JWT_SECRET=sua_chave_admin
+     API_TOKEN_SALT=umSaltParaApiTokens
+     TRANSFER_TOKEN_SALT=umSaltParaTransferencia
+     JWT_SECRET=sua_jwt_secret
+     ```
+
+3. **Configure o banco de dados PostgreSQL:**
+
+   - Certifique-se de que o banco está rodando e acessível com as credenciais acima.
+
+---
+
+## Rodando com Docker
+
+1. **Suba o ambiente com Docker Compose:**
+
+   ```bash
+   docker-compose up
+   ```
+
+   Isso irá criar o container do Strapi e conectar ao banco PostgreSQL conforme configurado.
+
+---
+
+## Rodando Localmente (sem Docker)
+
+1. **Instale as dependências:**
+
+   ```bash
+   yarn install
+   # ou
+   npm install
+   ```
+
+2. **Inicie o Strapi:**
+
+   ```bash
+   yarn develop
+   # ou
+   npm run develop
+   ```
+
+   O painel administrativo estará disponível em [http://localhost:1337/admin](http://localhost:1337/admin)
+
+---
+
+## Estrutura de Pastas
+
+- `src/api/` — APIs customizadas e content-types do Strapi
+- `src/admin/` — Customizações do painel administrativo
+- `config/` — Configurações do Strapi (database, server, plugins, etc.)
+- `public/` — Arquivos públicos e uploads
+- `database/` — Migrations e arquivos do banco (se aplicável)
+
+---
+
+## Segurança
+
+- Nunca compartilhe seu arquivo `.env` publicamente.
+- Use tokens de API para autenticação entre frontend e backend.
+- Altere as chaves secretas antes de subir para produção.
+
+---
+
+## Dicas
+
+- Para acessar o painel admin, acesse `/admin` na porta configurada (padrão: 1337).
+- Para gerar tokens de API, utilize o painel admin do Strapi.
+
+---
